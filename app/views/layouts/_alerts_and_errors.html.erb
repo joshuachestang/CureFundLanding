@@ -1,0 +1,68 @@
+<!-- <div id="flash-error-messages"> -->
+  <%# if flash[:notice] %>
+    <!-- <p id="flash_notices" class="messages notice align center bck theme"><%#= flash[:notice] %></p> -->
+    <% if flash[:notice] %>
+      <script type="text/javascript">
+        $(function() {
+          var message = '<span id="notification-icon" class="fa fa-check-circle"></span><p><%= flash[:notice] %></p>'
+          successNotification(message);
+        });
+      </script>
+    <% end %>
+
+    <!-- <p id="flash_errors" class="messages alert align center bck theme"><%#= flash[:alert] %></p> -->
+    <% if flash[:alert] %>
+      <script type="text/javascript">
+        $(function() {
+          var message = '<span id="notification-icon" class="fa fa-warning"></span><p><%= flash[:alert] %></p>'
+          failureNotification(message);
+        });
+      </script>
+    <% end %>
+    <!-- <p id="flash_notices" class="messages notice align center bck theme">Yello</p> -->
+    <!-- <p id="flash_errors" class="messages alert align center bck theme">Green</p> -->
+  <%# end %>
+  <%# flash[:alert] = nil %>
+<!-- </div> -->
+
+
+<script>
+  function successNotification(message) {
+    var notification = new NotificationFx({
+      message : message,
+      layout : 'bar',
+      effect : 'slidetop',
+      type : 'notice', // notice, warning or error
+      onOpen : function() {
+        $(".navbar-fixed-top").css({ "z-index": 0});
+      },
+      onClose : function() {
+        $(".ns-box").slideUp('slow');
+        $(".navbar-fixed-top").css({ "z-index": 1000});
+        // bttn.disabled = false;
+      }
+    });
+    notification.show();
+  };
+
+  function failureNotification(message) {
+    var notification = new NotificationFx({
+      message : message,
+      layout : 'bar',
+      effect : 'slidetop',
+      type : 'notice', // notice, warning or error
+      onOpen : function() {
+        $(".ns-box").css({ "background": "#d25027" });
+        $(".ns-effect-slidetop").css({"box-shadow": "inset 4.5em 0 #bd4823"});
+        $(".navbar-fixed-top").css({ "z-index": 0});
+      },
+      onClose : function() {
+        // $(".navbar-fixed-top").css({ "z-index": 1000});
+        $(".ns-box").slideUp('slow');
+        $(".navbar-fixed-top").css({ "z-index": 1000});
+        // bttn.disabled = false;
+      }
+    });
+    notification.show();
+  };
+</script>

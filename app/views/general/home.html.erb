@@ -1,0 +1,575 @@
+
+
+    <div id="document" class="document">
+
+      <!-- HEADER
+      ================================= -->
+      <header id="header" class="header-section section section-dark navbar navbar-fixed-top">
+
+        <div class="container-fluid">
+
+          <div class="navbar-header navbar-left">
+
+            <!-- RESPONSIVE MENU BUTTON -->
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="fa fa-bars fa-2x"></span>
+            </button>
+
+            <!-- HEADER LOGO -->
+            <a class="navbar-logo navbar-brand anchor-link" href="#hero">
+              <!-- <img src="../images/logos/header-logo.png" srcset="../images/logos/header-logo@2x.png 2x" alt="CUREFUND"> -->
+              <%#= image_tag('logos/header-logo.png') %>
+              CUREFUND
+            </a>
+
+          </div>
+
+          <nav id="navigation" class="navigation navbar-collapse collapse navbar-right">
+
+            <!-- NAVIGATION LINKS -->
+            <ul id="header-nav" class="nav navbar-nav">
+
+              <li><a href="#hero" class="hidden">Top</a></li>
+
+              <!-- <li><a href="#about">How</a></li> -->
+              <li><a href="#how-it-works">How it Works</a></li>
+              <li><a href="#benefits">Categories</a></li>
+              <!-- <li><a href="#team">The Team</a></li> -->
+
+              <!-- HEADER ACTION BUTTON -->
+              <li class="header-action-button"><a href="#hero" id="subscribe-1" class="btn btn-primary">Help fund a cure</a></li>
+
+            </ul>
+
+          </nav>
+
+        </div>
+
+      </header>
+
+      <!-- HERO
+      ================================= -->
+      <section id="hero" class="hero-section hero-layout-simple hero-fullscreen section section-dark">
+
+        <div class="section-background">
+
+          <!-- IMAGE BACKGROUND -->
+          <!-- <div class="section-background-image parallax-background" data-stellar-background-ratio="0.4"></div> -->
+
+          <!-- VIDEO BACKGROUND -->
+          <div class="section-background-video section-background-dot-overlay parallax" data-stellar-ratio="0.4">
+            <!-- <video preload="auto" autoplay loop muted poster="<%#= asset_path('backgrounds/video-fallback-bg.jpg') %>"> -->
+              <%#= video_tag("https://s3.amazonaws.com/gymbuddy/fitness-combo.mp4", :autobuffer => true, :autoplay => true, :loop => true, :muted => true, :poster => "backgrounds/video-fallback-bg.png" ) %>
+            <!-- </video> -->
+          </div>
+
+        </div>
+
+        <div class="container">
+
+          <div class="hero-content">
+
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+
+                <div class="hero-heading" data-animation="fadeIn">
+
+                  <h1 class="hero-title">CureFund</h1>
+                  <h3>Fund research for cures. See results of research.</h3>
+
+                  <%= form_for(@subscriber, html: { :multipart => true, id: "subscription-form", class: "subscription-form"}, remote: true ) do |f| %>
+                    <script type="text/javascript">
+                      $(document).ready(function() {
+                        $('form#subscription-form').bootstrapValidator({
+                          feedbackIcons: {
+                            invalid: 'fa fa-times',
+                            validating: 'fa fa-refresh'
+                          },
+                          excluded: [':disabled'],
+                          fields: {
+                            'subscriber[email]': {
+                              trigger: 'blur ',
+                              validators: {
+                                notEmpty: {
+                                    message: 'Please enter your email'
+                                },
+                                emailAddress:{
+                                    message: 'Please enter a valid email address'
+                                }
+                              }
+                            }
+                          }
+                        }).on('success.form.bv', function(e) {
+                          e.preventDefault();
+
+                          // Get the form instance
+                          var $form = $(e.target);
+
+                          // Get the BootstrapValidator instance
+                          var bv = $form.data('bootstrapValidator');
+                          // debugger;
+                          // Use Ajax to submit form data
+
+                        });
+                      });
+                    </script>
+                    <div class="form-validation alert"></div>
+                    <div class="form-group subscription-form-wrapper">
+                      <span class="subscription-form-input form-group">
+                        <%= f.text_field :email, class: "subscribe-form-email form-control form-control-lg", placeholder: "Enter your email address", autocomplete: "off" %>
+                      </span>
+                      <span class="subscription-form-input form-group">
+                      </span>
+
+                      <span class="subscription-form-submit">
+                        <%= f.submit "Stay updated", class: "btn btn-primary btn-lg", :disable_with => "submitting..." %>
+                      </span>
+                    </div>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- HERO START LINK -->
+        <a href="#how-it-works" class="hero-start-link anchor-link"><span class="fa fa-angle-double-down"></span></a>
+
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works" class="how-it-works-section section">
+
+        <div class="container-fluid">
+
+          <h2 class="section-heading text-center">How it Works</h2>
+
+          <div class="hiw-row row">
+
+            <!-- HOW IT WORKS - ITEM 1 -->
+            <div class="col-md-3 col-sm-6" data-animation="fadeIn">
+              <div class="hiw-item">
+                <%#= image_tag('contents/hiw-item-1.jpg', :class => "hiw-item-picture") %>
+                <div class="hiw-item-text">
+                  <span class="hiw-item-icon">1</span>
+                  <h4 class="hiw-item-title">Choose </h4>
+                  <p class="hiw-item-description">Choose a researcher or foundation campaign</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- HOW IT WORKS - ITEM 2 -->
+            <div class="col-md-3 col-sm-6" data-animation="fadeIn">
+              <div class="hiw-item even">
+                <%#= image_tag('contents/hiw-item-2.jpg', :class => "hiw-item-picture") %>
+                <div class="hiw-item-text">
+                  <span class="hiw-item-icon">2</span>
+                  <h4 class="hiw-item-title">Donate</h4>
+                  <p class="hiw-item-description">Make a one-time or recurring donation to your selected fund</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hidden-md hidden-lg clear"></div>
+
+            <!-- HOW IT WORKS - ITEM 3 -->
+            <div class="col-md-3 col-sm-6" data-animation="fadeIn">
+              <div class="hiw-item">
+                <%#= image_tag('contents/hiw-item-3.jpg', :class => "hiw-item-picture") %>
+                <div class="hiw-item-text">
+                  <span class="hiw-item-icon">3</span>
+                  <h4 class="hiw-item-title">Receive</h4>
+                  <p class="hiw-item-description">Researcher/Foundation receives your much need donations</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- HOW IT WORKS - ITEM 4 -->
+            <div class="col-md-3 col-sm-6" data-animation="fadeIn">
+              <div class="hiw-item even">
+                <%#= image_tag('contents/hiw-item-4.jpg', :class => "hiw-item-picture") %>
+                <div class="hiw-item-text">
+                  <span class="hiw-item-icon">4</span>
+                  <h4 class="hiw-item-title">Results</h4>
+                  <p class="hiw-item-description">Researcher/Foundation posts resulting research</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- HEADLINE
+      ================================= -->
+<!--       <section id="headline" class="headline-section section-gray section">
+
+        <div class="container">
+
+          <h2 class="section-heading text-center hidden">Tagline</h2>
+
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+
+              <p class="headline-text">
+                We believe your support is of utmost importance when it comes to finding cures.<br />
+                Now, we want to show where your support is going.
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+
+      </section> -->
+
+      <!-- DESCRIPTION
+      ================================= -->
+<!--       <section id="about" class="about-section section">
+
+        <div class="container">
+
+          <h2 class="section-heading text-center">About CUREFUND</h2>
+
+          <div class="about-row row">
+
+            <!-- DESCRIPTION IMAGE -->
+           <!--  <div class="about-image col-md-6" data-animation="fadeIn">
+              <%#= image_tag('contents/workout-3.png', :alt => "Description Image", :id => "workout-3-image") %>
+              <%#= image_tag('contents/workout-5.png', :alt => "Description Image") %>
+            </div> -->
+
+            <!-- DESCRIPTION TEXT -->
+            <!-- <div class="about-text col-md-6">
+              <p class="lead">CUREFUND is a 'crowdfunding' platform that fosters transparency by allowing researchers and organizations to show their donors how their monetary support is being utilized.
+                 This platform will offer you the ability to:
+              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit. Sed a nisl ullamcorper, tempus augue at, rutrum lacus. Duis et turpis eros. Duis ex metus, facilisis nec porta non, accumsan vel turpis. Proin euismod, sem a mollis vestibulum, ligula elit faucibus erat, in dignissim sapien leo eget quam.</p>
+              <ul class="icon-list">
+                <li>
+                  <span class="hiw-item-icon" data-animation="bounceIn">1</span>
+                  <h4 class="icon-list-title">Find</h4>
+                  <p>Run recurring donation campaigns to fund research for cures</p>
+                </li>
+                <li>
+                  <span class="hiw-item-icon" data-animation="bounceIn">2</span>
+                  <h4 class="icon-list-title">View</h4>
+                  <p>Allow funded researchers to post updates on where monetary support is going or progress made.</p>
+                </li>
+                <li>
+                  <span class="hiw-item-icon" data-animation="bounceIn">3</span>
+                  <h4 class="icon-list-title">Get Fit</h4>
+                  <p>Allow donors to view research updates posted by the researchers.</p>
+                </li>
+              </ul>
+            </div> -->
+<!--
+          </div>
+
+        </div>
+
+      </section> -->
+
+      <!-- TOPICSS
+      ================================= -->
+      <section id="benefits" class="benefits-section section-gray section">
+
+        <div class="container">
+
+          <h2 class="section-heading text-center">Categories of Research</h2>
+
+          <div class="benefits-row row">
+
+            <!-- TOPICS 1 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-bicycle" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Breast Cancer</h4>
+                <!-- <p class="benefit-description">Take advantage of what your Fit Pair has to offer. Share your knowledge of different exercises</p> -->
+              </div>
+            </div>
+
+            <!-- TOPICS 2 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-code" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Diabetes</h4>
+               <!--  <p class="benefit-description">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eu sollicitudin lacus, nec ultricies lorem.</p> -->
+              </div>
+            </div>
+
+            <div class="hidden-md hidden-lg clear"></div>
+
+            <!-- TOPICS 3 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-eye" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Food Allergies</h4>
+              </div>
+            </div>
+
+            <div class="hidden-sm clear"></div>
+
+            <!-- TOPICS 4 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-smile-o" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">ALS</h4>
+<!--                 <p class="benefit-description">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eu sollicitudin lacus, nec ultricies lorem.</p> -->
+              </div>
+            </div>
+
+            <div class="hidden-md hidden-lg clear"></div>
+
+            <!-- TOPICS 5 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-pagelines" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">AIDS/HIV</h4>
+<!--                 <p class="benefit-description">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eu sollicitudin lacus, nec ultricies lorem.</p> -->
+              </div>
+            </div>
+
+            <!-- TOPICS 6 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-paperclip" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Heart Disease</h4>
+              </div>
+            </div>
+
+            <!-- TOPICS 7 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-eye" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Epilepsy</h4>
+              </div>
+            </div>
+
+            <!-- TOPICS 8 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-eye" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Parkinson's Disease</h4>
+              </div>
+            </div>
+
+            <!-- TOPICS 9 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-eye" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Schizophrenia</h4>
+              </div>
+            </div>
+
+            <!-- TOPICS 10 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-eye" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Ebola</h4>
+              </div>
+            </div>
+
+            <!-- TOPICS 11 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-eye" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Lupus</h4>
+              </div>
+            </div>
+
+            <!-- TOPICS 12 -->
+            <div class="col-md-4 col-sm-6">
+              <div class="benefit">
+                <span class="benefit-icon fa fa-eye" data-animation="bounceIn"></span>
+                <h4 class="benefit-title">Asthma</h4>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- NUMBERS
+      ================================= -->
+      <!-- <section id="numbers" class="numbers-section section-dark section"> -->
+
+        <!-- <div class="section-background"> -->
+
+          <!-- IMAGE BACKGROUND -->
+<!--           <div class="section-background-image parallax-background" data-stellar-background-ratio="0.4"></div>
+
+        </div> -->
+<!--
+        <div class="container">
+
+          <h2 class="section-heading text-center">CUREFUND in Numbers</h2>
+
+          <div class="numbers-row row">
+ -->
+            <!-- NUMBERS - ITEM 2 -->
+<!--             <div class="col-md-6 col-sm-6">
+              <div class="numbers-item">
+                <div class="numbers-item-counter"><span class="counter-up">99.8</span>%</div>
+                <div class="numbers-item-caption">User Ratings</div>
+              </div>
+            </div> -->
+
+            <!-- NUMBERS - ITEM 4 -->
+<!--             <div class="col-md-6 col-sm-6">
+              <div class="numbers-item">
+                <div class="numbers-item-counter"><span class="counter-up">6</span> <span class="fa fa-compress"></span></div>
+                <div class="numbers-item-caption">Users Paired</div>
+              </div>
+            </div>
+ -->
+<!--           </div>
+
+        </div>
+
+      </section> -->
+
+      <!-- TEAM
+      ================================= -->
+<!--       <section id="team" class="team-section section">
+
+        <div class="container">
+
+          <h2 class="section-heading text-center">Meet The Team</h2>
+
+          <div class="team-row col-xs-12 ">
+
+            <!-- TEAM MEMBER 1 -->
+            <!-- <div class="col-md-3" data-animation="fadeIn">
+              <div class="team-member">
+                <%#= image_tag('contents/team-member-1.png', :class => "team-member-picture") %>
+                <div class="team-member-text">
+                  <h4 class="team-member-name">Alex Morency</h4>
+                  <div class="team-member-position">Founder</div>
+                  <p class="team-member-description">Brooklyn, NY and graduate of Kettering University and Cornell University. Racing (Formula 1) and workout enthusiast who enjoys everything and anything about life.</p>
+                </div>
+              </div>
+            </div>
+ -->
+            <!-- TEAM MEMBER 2 -->
+            <!-- <div class="col-md-3" data-animation="fadeIn">
+              <div class="team-member even">
+                <%#= image_tag('contents/team-member-2.png', :class => "team-member-picture") %>
+                <div class="team-member-text">
+                  <h4 class="team-member-name">Andrew An</h4>
+                  <div class="team-member-position">Co-Founder &amp; UX Designer</div>
+                  <p class="team-member-description">Oyster Bay, NY and graduate of Northwestern University. Avid photographer and obsessive journal scribbler for those next new user insights.</p>
+                </div>
+              </div>
+            </div>
+ -->
+            <!-- <div class="hidden-md hidden-lg clear"></div> -->
+
+            <!-- TEAM MEMBER 3 -->
+            <!-- <div class="col-md-3" data-animation="fadeIn">
+              <div class="team-member">
+                <%#= image_tag('contents/team-member-3.png', :class => "team-member-picture") %>
+                <div class="team-member-text">
+                  <h4 class="team-member-name">Joshua Chestang</h4>
+                  <div class="team-member-position">Co-Founder &amp; Developer</div>
+                  <p class="team-member-description">Chicago, IL, self-taught developer, Howard University and The Starter League alumni. Loves participating in hackathons and learning to build scalable businesses.</p>
+                </div>
+              </div>
+            </div>
+ -->
+            <!-- <div class="hidden-sm hidden-lg clear"></div> -->
+
+            <!-- TEAM MEMBER 4 -->
+            <!-- <div class="col-md-3" data-animation="fadeIn">
+              <div class="team-member even">
+                <%#= image_tag('contents/team-member-4.png', :class => "team-member-picture") %>
+                <div class="team-member-text">
+                  <h4 class="team-member-name">Neil Patel</h4>
+                  <div class="team-member-position">Co-Founder &amp; Strategist</div>
+                  <p class="team-member-description">Carol Stream, IL and graduate of Purdue University. Video-gamer and enthusiastic  chess player who enjoys hanging out with friends.</p>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="hidden-md hidden-lg clear"></div> -->
+
+
+<!--
+          </div>
+
+        </div>
+
+      </section>
+ -->
+
+      <!-- CLOSING
+      ================================= -->
+      <section id="closing" class="closing-section section-dark section">
+
+        <div class="section-background">
+
+          <!-- IMAGE BACKGROUND -->
+          <div class="section-background-image parallax-background" data-stellar-background-ratio="0.4"></div>
+
+        </div>
+
+        <div class="container">
+
+          <h3 class="closing-shout">Ready to start? Take the first step by clicking a button below</h3>
+
+          <div class="closing-buttons" data-animation="tada">
+            <a href="#hero" id="subscribe-2" class="anchor-link btn btn-lg btn-primary">I'm a donor</a>
+            <a href="#hero" id="subscribe-2" class="anchor-link btn btn-lg btn-primary">I'm a researcher</a>
+            <a href="#hero" id="subscribe-2" class="anchor-link btn btn-lg btn-primary">I'm a non-profit</a>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- FOOTER
+      ================================= -->
+      <section id="footer" class="footer-section section">
+
+        <div class="container">
+
+          <h3 class="footer-logo">
+            CUREFUND
+            <%#= image_tag('logos/footer-logo.png', :alt => "CUREFUND") %>
+          </h3>
+
+          <div class="footer-socmed">
+            <a href="#" target="_blank"><span class="fa fa-facebook"></span></a>
+            <a href="#" target="_blank"><span class="fa fa-twitter"></span></a>
+            <a href="#" target="_blank"><span class="fa fa-instagram"></span></a>
+            <a href="#" target="_blank"><span class="fa fa-pinterest"></span></a>
+          </div>
+
+          <div class="footer-copyright">
+            &copy; 2015 CUREFUND
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a#subscribe-1, a#subscribe-2").click(function(){
+      var message = '<span id="notification-icon" class="fa fa-check-circle"></span><p>We appreciate your interest and support! Stay updated by entering your email below.</p>'
+      successNotification(message);
+    })
+  });
+</script>

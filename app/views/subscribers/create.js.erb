@@ -1,0 +1,11 @@
+<% if @subscriber.errors.present? %>
+  <% @subscriber.errors.each do |key, msg| %>
+    var message = '<span id="notification-icon" class="fa fa-warning"></span><p><span id="salutation">Uh Oh!</span> Your <%= key.to_s.humanize.downcase %> <%= msg %> </p>'
+    failureNotification(message);
+  <% end %>
+<% else %>
+  // location.reload();
+  var message = '<span id="notification-icon" class="fa fa-check-circle"></span><p><span id="salutation"><%= flash[:notice] %></span></p>'
+  successNotification(message);
+<% end %>
+
