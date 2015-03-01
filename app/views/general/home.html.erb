@@ -19,8 +19,7 @@
             <!-- HEADER LOGO -->
             <a class="navbar-logo navbar-brand anchor-link" href="#hero">
               <!-- <img src="../images/logos/header-logo.png" srcset="../images/logos/header-logo@2x.png 2x" alt="CUREFUND"> -->
-              <%#= image_tag('logos/header-logo.png') %>
-              CUREFUND
+              <%= image_tag('logos/header-logo.png') %>
             </a>
 
           </div>
@@ -32,7 +31,7 @@
 
               <li><a href="#hero" class="hidden">Top</a></li>
 
-              <!-- <li><a href="#about">How</a></li> -->
+              <li><a href="#about">About</a></li>
               <li><a href="#how-it-works">How it Works</a></li>
               <li><a href="#benefits">Categories</a></li>
               <!-- <li><a href="#team">The Team</a></li> -->
@@ -60,7 +59,7 @@
           <!-- VIDEO BACKGROUND -->
           <div class="section-background-video section-background-dot-overlay parallax" data-stellar-ratio="0.4">
             <!-- <video preload="auto" autoplay loop muted poster="<%#= asset_path('backgrounds/video-fallback-bg.jpg') %>"> -->
-              <%#= video_tag("https://s3.amazonaws.com/gymbuddy/fitness-combo.mp4", :autobuffer => true, :autoplay => true, :loop => true, :muted => true, :poster => "backgrounds/video-fallback-bg.png" ) %>
+              <%#= video_tag("https://s3.amazonaws.com/curefund/sun-effect-with-dust-particles_bysqd9z-b__D.mp4", :autobuffer => true, :autoplay => true, :loop => true, :muted => true, :poster => "backgrounds/video-fallback-bg.png" ) %>
             <!-- </video> -->
           </div>
 
@@ -76,7 +75,7 @@
                 <div class="hero-heading" data-animation="fadeIn">
 
                   <h1 class="hero-title">CureFund</h1>
-                  <h3>Fund research for cures. See results.</h3>
+                  <h3>Crowdfund research for cures.</h3>
 
                   <%= form_for(@subscriber, html: { :multipart => true, id: "subscription-form", class: "subscription-form"}, remote: true ) do |f| %>
                     <script type="text/javascript">
@@ -120,6 +119,7 @@
                         <%= f.text_field :email, class: "subscribe-form-email form-control form-control-lg", placeholder: "Enter your email address", autocomplete: "off" %>
                       </span>
                       <span class="subscription-form-input form-group">
+                        <%= f.hidden_field :subscriber_type, id: "subscriber-type" %>
                       </span>
 
                       <span class="subscription-form-submit">
@@ -137,9 +137,48 @@
         </div>
 
         <!-- HERO START LINK -->
-        <a href="#how-it-works" class="hero-start-link anchor-link"><span class="fa fa-angle-double-down"></span></a>
+        <div class="row text-center">
+          <span id="learn-more">Learn More</span>
+        </div>
+        <a href="#about" class="hero-start-link anchor-link">
+          <span class="fa fa-angle-double-down"></span>
+        </a>
 
       </section>
+      <!-- TWO COLS DESCRIPTION SECTION
+      ================================= -->
+      <section id="about" class="two-cols-description-section section-accent section">
+
+        <div class="container-fluid two-cols-description-row">
+
+          <!-- TWO COLS DESCRIPTION TEXT -->
+          <div class="two-cols-description-text" data-animation="fadeInLeft">
+
+            <div class="two-cols-description-text-inner">
+
+              <h2 class="section-heading text-left">About CureFund</h2>
+
+              <p>CureFund is a crowdfunding platform for researchers and foundations who are seeking to find cures for any disease, disorder, or disability. At CureFund, we value transparency. In order to cultivate this, researchers and foundations who receive support through CureFund post detailed updates on their findings and results for their donors. We believe transparency will propel our researchers to attain positive results faster.</p>
+
+              <ul class="nice-list">
+                <li>Transparency</li>
+                <li>Community</li>
+                <li>Hope</li>
+              </ul>
+
+            </div>
+
+          </div>
+
+          <!-- TWO COLS DESCRIPTION IMAGE -->
+          <div class="two-cols-description-image" data-animation="fadeInRight">
+            <%= image_tag('contents/microscope.png') %>
+          </div>
+
+        </div>
+
+      </section>
+
 
       <!-- HOW IT WORKS -->
       <section id="how-it-works" class="how-it-works-section section">
@@ -528,9 +567,9 @@
           <h3 class="closing-shout">Ready to help? Take the first step by clicking a button below.</h3>
 
           <div class="closing-buttons" data-animation="tada">
-            <a href="#hero" id="subscribe-2" class="anchor-link btn btn-lg btn-primary">I'm a donor</a>
-            <a href="#hero" id="subscribe-2" class="anchor-link btn btn-lg btn-primary">I'm a researcher</a>
-            <a href="#hero" id="subscribe-2" class="anchor-link btn btn-lg btn-primary">I'm a non-profit</a>
+            <a href="#hero" id="subscribe-2" class="anchor-link btn btn-lg btn-primary">I'm a potential donor</a>
+            <a href="#hero" id="subscribe-3" class="anchor-link btn btn-lg btn-primary">I'm a researcher</a>
+            <a href="#hero" id="subscribe-4" class="anchor-link btn btn-lg btn-primary">I'm a non-profit rep.</a>
           </div>
 
         </div>
@@ -543,16 +582,16 @@
 
         <div class="container">
 
-          <h3 class="footer-logo">
+<!--           <h3 class="footer-logo">
             CUREFUND
             <%#= image_tag('logos/footer-logo.png', :alt => "CUREFUND") %>
-          </h3>
+          </h3> -->
 
           <div class="footer-socmed">
-            <a href="#" target="_blank"><span class="fa fa-facebook"></span></a>
-            <a href="#" target="_blank"><span class="fa fa-twitter"></span></a>
-            <a href="#" target="_blank"><span class="fa fa-instagram"></span></a>
-            <a href="#" target="_blank"><span class="fa fa-pinterest"></span></a>
+            <!-- <a href="#" target="_blank"><span class="fa fa-facebook"></span></a> -->
+            <a href="http://twitter.com/cure_fund" target="_blank"><span class="fa fa-twitter"></span></a>
+            <!-- <a href="#" target="_blank"><span class="fa fa-instagram"></span></a> -->
+            <!-- <a href="#" target="_blank"><span class="fa fa-pinterest"></span></a> -->
           </div>
 
           <div class="footer-copyright">
@@ -567,7 +606,23 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $("a#subscribe-1, a#subscribe-2").click(function(){
+    $("a#subscribe-1").click(function(){
+      $("#subscriber-type").val("General")
+      var message = '<span id="notification-icon" class="fa fa-check-circle"></span><p>We appreciate your interest and support! Stay updated by entering your email below.</p>'
+      successNotification(message);
+    })
+    $("a#subscribe-2").click(function(){
+      $("#subscriber-type").val("Potential Donor")
+      var message = '<span id="notification-icon" class="fa fa-check-circle"></span><p>We appreciate your interest and support! Stay updated by entering your email below.</p>'
+      successNotification(message);
+    })
+    $("a#subscribe-3").click(function(){
+      $("#subscriber-type").val("Researcher")
+      var message = '<span id="notification-icon" class="fa fa-check-circle"></span><p>We appreciate your interest and support! Stay updated by entering your email below.</p>'
+      successNotification(message);
+    })
+    $("a#subscribe-4").click(function(){
+      $("#subscriber-type").val("Non-Profit Representative")
       var message = '<span id="notification-icon" class="fa fa-check-circle"></span><p>We appreciate your interest and support! Stay updated by entering your email below.</p>'
       successNotification(message);
     })
