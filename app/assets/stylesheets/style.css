@@ -367,6 +367,7 @@ iframe {
 	line-height: 30px;
 	height: 60px;
 	padding: 14px 24px;
+	border-radius: 30px;
 }
 .form-validation {
 	display: none;
@@ -429,7 +430,7 @@ iframe {
  */
 .btn {
 	padding: 9px 14px;
-	border-radius: 0;
+	border-radius: 30px;
 	font-family: "Montserrat", sans-serif;
 	font-size: 11px;
 	line-height: 1.819;
@@ -737,6 +738,7 @@ iframe {
 .hero-section form {
 	background-color: #f6f6f6;
 	padding: 30px;
+	border-radius: 65px;
 }
 .section-gray.hero-section form {
 	background-color: #fff;
