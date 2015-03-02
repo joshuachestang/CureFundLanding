@@ -27,6 +27,7 @@
 
 
 
+
 html {
 	height: 100% !important;
 }
@@ -552,6 +553,7 @@ iframe {
 	line-height: 1.819;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
+	padding-bottom: 3px;
 }
 .btn:active, .btn.active {
 	-webkit-box-shadow: none;
