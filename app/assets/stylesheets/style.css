@@ -295,7 +295,7 @@ iframe {
 /* SECTION BACKGROUND */
 .section-background {
 	position: absolute;
-	background-image: url('backgrounds/subtle_dots.png');
+	background-image: asset-path("backgrounds/subtle_dots.png");
 	top: 0;
 	bottom: 0;
 	left: 0;
